@@ -44,13 +44,16 @@ public class Gmail extends Email {
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
 
+        int index = -1;
         for(int i=0; i<inbox.size(); i++){
-            Triple<Date, String, String> mail = inbox.get(i);
-            if(message.equals(mail.getRight())){
-                trash.add(mail);
-                inbox.remove(i);
+            if(message.equals(inbox.get(i).getRight())){
+                index = i;
                 break;
             }
+        }
+        if(index != -1){
+            trash.add(inbox.get(index));
+            inbox.remove(index);
         }
     }
 

@@ -90,8 +90,8 @@ public class Gmail extends Email {
         int count = 0;
         for(Triple<Date,String,String> mail : inbox){
             Date date = mail.getLeft();
-            if((date.after(start) || date == start) && (date.before(end) || date == end)){
-                count++;
+            if ((mail.getLeft().compareTo(start) >= 0) && (mail.getLeft().compareTo(end) <= 0)) {
+                count += 1;
             }
         }
         return count;
